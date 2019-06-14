@@ -27,11 +27,9 @@ public class MainPresenter {
     private String query;
     private int page;
     private boolean loading;
-    @Inject
-    Router router;
 
-    @Inject
-    Model model;
+    private Router router;
+    private Model model;
 
     @Inject
     public MainPresenter(Router router1,Model model1) {

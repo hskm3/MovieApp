@@ -25,12 +25,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class Model {
 
-    @Inject
-    MdbApi mdbApi;
-    @Inject
-    AppDatabase appDatabase;
 
-    @Inject
+    private MdbApi mdbApi;
+
+    private AppDatabase appDatabase;
+
+//    @Inject
     public Model(MdbApi mdbApi, AppDatabase appDatabase) {
         this.mdbApi = mdbApi;
         this.appDatabase = appDatabase;
