@@ -4,7 +4,7 @@ package com.example.haaska.navig.ui;
 //import android.app.Fragment;
 //import android.app.FragmentManager;
 
-import android.app.ProgressDialog;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.example.haaska.navig.App;
 import com.example.haaska.navig.R;
 import com.example.haaska.navig.model.Movie;
 import com.example.haaska.navig.mvp.FavorPresenter;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -30,7 +33,8 @@ public class FavorFragment extends Fragment implements OnMovieClickListener, Fav
 
     RecyclerView recyclerView;
     List<Movie> movies;
-    private FavorPresenter presenter;
+    @Inject
+    FavorPresenter presenter;
     MdbAdapter adapter;
 
     public FavorFragment() {
@@ -40,6 +44,7 @@ public class FavorFragment extends Fragment implements OnMovieClickListener, Fav
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.getInstance().getAppComponent().inject(this);
         setRetainInstance(true);
     }
 
@@ -57,10 +62,23 @@ public class FavorFragment extends Fragment implements OnMovieClickListener, Fav
 
         adapter = new MdbAdapter(this, movies);
         recyclerView.setAdapter(adapter);
-        presenter=new FavorPresenter(this);
+        presenter.attachView(this);
         presenter.getAllMovies();
         return v;
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        presenter.attachView(this );
+//
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        presenter.detachView();
+//        super.onStop();
+//    }
 
     @Override
     public void OnMovieClick(Movie movie) {

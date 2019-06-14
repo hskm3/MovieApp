@@ -8,6 +8,8 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import javax.inject.Inject;
+
 @Entity
 public class Movie implements Parcelable {
 
@@ -42,8 +44,10 @@ public class Movie implements Parcelable {
 
     private int fav;
 
+
     public Movie() {
     }
+
 
     public Movie(Parcel in) {
         id = in.readInt();

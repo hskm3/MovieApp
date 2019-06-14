@@ -9,6 +9,8 @@ import com.example.haaska.navig.model.Model;
 import com.example.haaska.navig.model.Movie;
 import com.example.haaska.navig.mvp.DetailView;
 
+import javax.inject.Inject;
+
 import io.reactivex.CompletableObserver;
 import io.reactivex.disposables.Disposable;
 
@@ -16,14 +18,30 @@ public class DetailPresenter {
 
     private static final String TAG = "mdbapp";
     private DetailView view;
-    private Model model;
+    @Inject
+    Model model;
+
     private Movie movie;
 
-    public DetailPresenter(DetailView view, Movie movie) {
-        this.view = view;
-        this.model = App.getModel();
-        this.movie=movie;
+    @Inject
+    public DetailPresenter(Model model) {
+
+        this.model = model;
+
     }
+
+    public void setMovie(Movie movie1){
+        movie=movie1;
+    }
+
+    public void attachView(DetailView detailView) {
+        view = detailView;
+    }
+
+    public void detachView() {
+        view = null;
+    }
+
 
     public void setOnFavBtn(int id, Movie movie){
         model.getMovieById(id)
@@ -60,7 +78,6 @@ public class DetailPresenter {
                                 public void onComplete() {
                                     Log.i(TAG,"db delete movie");
                                     view.showMessages("delete movie from favorites");
-//                                    Toast.makeText(view,"delete movie from favorites",Toast.LENGTH_LONG).show();
 
                                 }
 
@@ -86,14 +103,12 @@ public class DetailPresenter {
                     public void onComplete() {
                         Log.i(TAG, "db insert movie");
                         view.showMessages("add movie to favorites");
-//                        Toast.makeText(view,"add movie to favorites",Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.i(TAG, e.getMessage());
                         view.showMessages(e.getMessage());
-//                        Toast.makeText(view,e.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
     }

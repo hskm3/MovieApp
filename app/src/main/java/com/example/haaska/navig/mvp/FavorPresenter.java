@@ -8,20 +8,34 @@ import com.example.haaska.navig.model.Movie;
 import com.example.haaska.navig.mvp.FavorView;
 import com.example.haaska.navig.screen.DetailScreen;
 
+import javax.inject.Inject;
+
 import ru.terrakok.cicerone.Router;
 
 public class FavorPresenter {
 
     private static final String TAG = "mdbapp";
     private FavorView view;
-    private Model model;
-    private Router router;
+    @Inject
+    Model model;
+    @Inject
+    Router router;
 
-    public FavorPresenter(FavorView view) {
-        this.view = view;
-        this.model = App.getModel();
-        router=App.getInstance().getRouter();
+    @Inject
+    public FavorPresenter(Model model1,Router router1) {
+
+        this.model = model1;
+        router=router1;
     }
+
+    public void attachView(FavorView favorView) {
+        view = favorView;
+    }
+
+    public void detachView() {
+        view = null;
+    }
+
 
     public void getAllMovies(){
         model.getAllMovies()

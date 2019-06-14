@@ -12,6 +12,8 @@ import com.example.haaska.navig.model.Movie;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import ru.terrakok.cicerone.Router;
 
 public class MainPresenter {
@@ -20,25 +22,27 @@ public class MainPresenter {
     private static final int VISIBLE_THRESHOLD = 5;
     private int previousTotal;
     private MainView view;
-    private Model model;
+
     private List<Movie> movies;
     private String query;
     private int page;
     private boolean loading;
-    private Router router;
+    @Inject
+    Router router;
 
-//    public String getQuery() {
-//        return query;
-//    }
+    @Inject
+    Model model;
 
-    public MainPresenter() {
-        model = App.getModel();
+    @Inject
+    public MainPresenter(Router router1,Model model1) {
+//        model = App.getModel();
         movies=new ArrayList<>();
         query=STUB_QUERY;
         page=1;
         previousTotal=0;
         loading=true;
-        router=App.getInstance().getRouter();
+        router=router1;
+        model=model1;
     }
 
     public void attachView(MainView mainView) {

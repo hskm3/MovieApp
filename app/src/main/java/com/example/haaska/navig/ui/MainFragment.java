@@ -27,10 +27,14 @@ import com.example.haaska.navig.mvp.MainView;
         import java.util.List;
         import java.util.Objects;
 
+import javax.inject.Inject;
+
 public class MainFragment extends Fragment implements MainView, OnMovieClickListener {
 
+
+    @Inject
+    MainPresenter presenter;
     private MdbAdapter adapter;
-    private MainPresenter presenter;
     private LinearLayoutManager layoutManager;
     public static final String TAG="frga";
     private ProgressBar progressBar;
@@ -44,7 +48,8 @@ public class MainFragment extends Fragment implements MainView, OnMovieClickList
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
-        presenter = App.getPresenter();
+//        presenter = App.getPresenter();
+        App.getInstance().getAppComponent().inject(this);
         setRetainInstance(true);
     }
 

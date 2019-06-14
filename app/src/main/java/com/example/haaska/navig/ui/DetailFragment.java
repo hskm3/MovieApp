@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.haaska.navig.App;
 import com.example.haaska.navig.R;
 import com.example.haaska.navig.model.Movie;
 import com.example.haaska.navig.mvp.DetailPresenter;
@@ -16,6 +17,8 @@ import com.example.haaska.navig.mvp.DetailView;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
+
+import javax.inject.Inject;
 
 public class DetailFragment extends Fragment implements DetailView {
 
@@ -38,7 +41,8 @@ public class DetailFragment extends Fragment implements DetailView {
     private ImageView img;
     private ImageButton btn_fav;
 
-    private DetailPresenter presenter;
+    @Inject
+    DetailPresenter presenter;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -60,7 +64,9 @@ public class DetailFragment extends Fragment implements DetailView {
         if (getArguments() != null) {
             movie=getArguments().getParcelable("movie");
         }
-        presenter=new DetailPresenter(this,movie);
+        App.getInstance().getAppComponent().inject(this);
+        presenter.setMovie(movie);
+//        presenter=new DetailPresenter(this,movie);
     }
 
     @Override
@@ -69,6 +75,7 @@ public class DetailFragment extends Fragment implements DetailView {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.mov_detail, container, false);
         Objects.requireNonNull(getActivity()).setTitle("Movie Info");
+        presenter.attachView(this);
         id= movie.getId();
         posterPath= movie.getPosterPath();
         title= movie.getTitle();
@@ -89,7 +96,7 @@ public class DetailFragment extends Fragment implements DetailView {
             Picasso.get()
                     .load(imgbaseUrl.concat(posterPath))
                     .placeholder(R.drawable.ic_stub)
-//                    .error(R.drawable.ic_stat_name)
+                    .error(R.drawable.ic_stub)
                     .fit()
                     .centerCrop()
                     .into((ImageView) img);
@@ -109,6 +116,19 @@ public class DetailFragment extends Fragment implements DetailView {
             }
         });
         return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.attachView(this );
+
+    }
+
+    @Override
+    public void onStop() {
+        presenter.detachView();
+        super.onStop();
     }
 
     @Override
