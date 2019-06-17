@@ -1,14 +1,8 @@
 package com.example.haaska.navig.mvp;
 
 
-import android.util.Log;
-
-
-import com.example.haaska.navig.App;
 import com.example.haaska.navig.model.Model;
 import com.example.haaska.navig.model.Movie;
-import com.example.haaska.navig.mvp.DetailView;
-
 import javax.inject.Inject;
 
 import io.reactivex.CompletableObserver;
@@ -18,16 +12,12 @@ public class DetailPresenter {
 
     private static final String TAG = "mdbapp";
     private DetailView view;
-    @Inject
+//    @Inject
     Model model;
-
     private Movie movie;
-
     @Inject
     public DetailPresenter(Model model) {
-
         this.model = model;
-
     }
 
     public void setMovie(Movie movie1){
@@ -60,10 +50,8 @@ public class DetailPresenter {
         } else {
             delFavMovie(movie);
             view.setOffFavBtn();
-
         }
     }
-
 
     private void delFavMovie(Movie movie){
 
@@ -76,16 +64,12 @@ public class DetailPresenter {
 
                                 @Override
                                 public void onComplete() {
-                                    Log.i(TAG,"db delete movie");
                                     view.showMessages("delete movie from favorites");
-
                                 }
 
                                 @Override
                                 public void onError(Throwable e) {
-                                    Log.i(TAG,e.getMessage());
                                     view.showMessages(e.getMessage());
-
                                 }
                             });
     }
@@ -101,13 +85,11 @@ public class DetailPresenter {
 
                     @Override
                     public void onComplete() {
-                        Log.i(TAG, "db insert movie");
                         view.showMessages("add movie to favorites");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i(TAG, e.getMessage());
                         view.showMessages(e.getMessage());
                     }
                 });

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.haaska.navig.App;
 import com.example.haaska.navig.R;
@@ -66,13 +67,11 @@ public class DetailFragment extends Fragment implements DetailView {
         }
         App.getInstance().getAppComponent().inject(this);
         presenter.setMovie(movie);
-//        presenter=new DetailPresenter(this,movie);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.mov_detail, container, false);
         Objects.requireNonNull(getActivity()).setTitle("Movie Info");
         presenter.attachView(this);
@@ -134,7 +133,6 @@ public class DetailFragment extends Fragment implements DetailView {
     @Override
     public void setOnFavBtn() {
         btn_fav.setImageResource(android.R.drawable.star_big_on);
-
     }
 
     @Override
@@ -144,6 +142,6 @@ public class DetailFragment extends Fragment implements DetailView {
 
     @Override
     public void showMessages(String msg) {
-
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_LONG).show();
     }
 }

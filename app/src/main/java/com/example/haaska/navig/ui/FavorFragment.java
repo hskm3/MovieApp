@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.example.haaska.navig.App;
@@ -67,19 +68,6 @@ public class FavorFragment extends Fragment implements OnMovieClickListener, Fav
         return v;
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        presenter.attachView(this );
-//
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        presenter.detachView();
-//        super.onStop();
-//    }
-
     @Override
     public void OnMovieClick(Movie movie) {
 
@@ -88,7 +76,7 @@ public class FavorFragment extends Fragment implements OnMovieClickListener, Fav
 
     @Override
     public void showMessages(String msg) {
-
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -107,18 +95,4 @@ public class FavorFragment extends Fragment implements OnMovieClickListener, Fav
         adapter.setData(movies);
     }
 
-    @Override
-    public void navigate(Movie movie) {
-//        Fragment fr = new DetailFragment();
-//
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelable("movie", movie);
-//        fr.setArguments(bundle);
-//        FragmentManager fm = getFragmentManager();
-//        assert fm != null;
-//        fm.beginTransaction()
-//                .replace(R.id.frag, DetailFragment.newInstance(movie))
-//                .addToBackStack(null)
-//                .commit();
-    }
 }

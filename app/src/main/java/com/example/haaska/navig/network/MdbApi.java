@@ -14,9 +14,8 @@ import retrofit2.http.Query;
 public interface MdbApi {
 
     @GET("search/movie")
-//    Call<MdbResponse> getData(@Query("api_key") String apiKey, @Query("query") String query);
     Observable<MdbResponse> getData(@Query("api_key") String apiKey, @Query("query") String query, @Query("page") int page);
 
     @GET("movie/{movie_id}")
-    Call<Movie> getDataM(@Path("movie_id") int id, @Query("api_key") String apiKey);
+    Call<Movie> getDataById(@Path("movie_id") int id, @Query("api_key") String apiKey);
 }

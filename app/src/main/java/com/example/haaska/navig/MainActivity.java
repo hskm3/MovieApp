@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Navigator navigator=new SupportAppNavigator(this,R.id.frag);
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

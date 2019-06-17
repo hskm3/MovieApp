@@ -31,7 +31,6 @@ import javax.inject.Inject;
 
 public class MainFragment extends Fragment implements MainView, OnMovieClickListener {
 
-
     @Inject
     MainPresenter presenter;
     private MdbAdapter adapter;
@@ -48,7 +47,6 @@ public class MainFragment extends Fragment implements MainView, OnMovieClickList
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
-//        presenter = App.getPresenter();
         App.getInstance().getAppComponent().inject(this);
         setRetainInstance(true);
     }

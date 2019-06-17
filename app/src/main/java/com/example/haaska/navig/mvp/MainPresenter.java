@@ -1,8 +1,5 @@
 package com.example.haaska.navig.mvp;
 
-import android.util.Log;
-
-import com.example.haaska.navig.App;
 import com.example.haaska.navig.screen.DetailScreen;
 import com.example.haaska.navig.screen.FavorScreen;
 import com.example.haaska.navig.R;
@@ -33,7 +30,6 @@ public class MainPresenter {
 
     @Inject
     public MainPresenter(Router router1,Model model1) {
-//        model = App.getModel();
         movies=new ArrayList<>();
         query=STUB_QUERY;
         page=1;
@@ -72,7 +68,6 @@ public class MainPresenter {
                             ,
                             throwable -> {
                                 view.showMessages(throwable.getMessage());
-                                Log.i("mdb","load err");
 
                             }
                     );
@@ -128,8 +123,6 @@ public class MainPresenter {
 
         router.navigateTo(new DetailScreen(movie));
     }
-
-
 
     public void setQuery() {
         view.setQuery(query);

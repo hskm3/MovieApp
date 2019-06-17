@@ -30,7 +30,6 @@ public class Model {
 
     private AppDatabase appDatabase;
 
-//    @Inject
     public Model(MdbApi mdbApi, AppDatabase appDatabase) {
         this.mdbApi = mdbApi;
         this.appDatabase = appDatabase;

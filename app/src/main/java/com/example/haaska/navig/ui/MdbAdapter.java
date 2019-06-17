@@ -24,7 +24,7 @@ public class MdbAdapter extends RecyclerView.Adapter<MdbAdapter.ViewHolder> {
     private OnMovieClickListener listener;
     private static final String baseUrl="https://image.tmdb.org/t/p/w185";
 
-    public MdbAdapter(OnMovieClickListener listener, List<Movie> movies) {
+    MdbAdapter(OnMovieClickListener listener, List<Movie> movies) {
         this.listener=listener;
         this.movies = movies;
     }
@@ -50,18 +50,10 @@ public class MdbAdapter extends RecyclerView.Adapter<MdbAdapter.ViewHolder> {
         return movies.size();
     }
 
-    public void setData(List<Movie> movieList) {
-//        if(!isScroll){
-//            movies.clear();
-//        }
-
+    void setData(List<Movie> movieList) {
         movies.clear();
-        Log.i(TAG,"setData clear movies "+ movies.size());
-        Log.i(TAG,"setData clear movieList"+ movieList.size());
         movies.addAll(movieList);
         notifyDataSetChanged();
-        Log.i(TAG,"setData movies"+ movies.size());
-        Log.i(TAG,"setData movieList"+ movieList.size());
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -73,8 +65,8 @@ public class MdbAdapter extends RecyclerView.Adapter<MdbAdapter.ViewHolder> {
             super(itemView);
             itemView.setOnClickListener(this);
 
-            title = (TextView) itemView.findViewById(R.id.info_text);
-            img = (ImageView) itemView.findViewById(R.id.info_image);
+            title = itemView.findViewById(R.id.info_text);
+            img = itemView.findViewById(R.id.info_image);
         }
 
         void bind(Movie resMod){

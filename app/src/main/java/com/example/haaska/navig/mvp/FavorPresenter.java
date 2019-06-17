@@ -1,11 +1,8 @@
 package com.example.haaska.navig.mvp;
 
 
-import com.example.haaska.navig.App;
-
 import com.example.haaska.navig.model.Model;
 import com.example.haaska.navig.model.Movie;
-import com.example.haaska.navig.mvp.FavorView;
 import com.example.haaska.navig.screen.DetailScreen;
 
 import javax.inject.Inject;
@@ -16,14 +13,11 @@ public class FavorPresenter {
 
     private static final String TAG = "mdbapp";
     private FavorView view;
-    @Inject
     Model model;
-    @Inject
     Router router;
 
     @Inject
     public FavorPresenter(Model model1,Router router1) {
-
         this.model = model1;
         router=router1;
     }
@@ -35,7 +29,6 @@ public class FavorPresenter {
     public void detachView() {
         view = null;
     }
-
 
     public void getAllMovies(){
         model.getAllMovies()

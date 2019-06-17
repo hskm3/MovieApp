@@ -12,10 +12,5 @@ public interface FavorView {
     void showProgress();
     void hideProgress();
 
-
     void showMovies(List<Movie> movies);
-
-
-    void navigate(Movie movie);
-
 }
