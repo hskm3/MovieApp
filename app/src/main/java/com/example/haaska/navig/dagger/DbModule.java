@@ -12,13 +12,14 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module
+@Module(includes = ContextModule.class)
 public class DbModule {
 
     @Provides
     @Singleton
-    public AppDatabase appDatabase(){
-        return Room.databaseBuilder(App.getInstance().getApplicationContext(),AppDatabase.class,"db").build();
+    public AppDatabase appDatabase(Context context){
+//        return Room.databaseBuilder(App.getInstance().getApplicationContext(),AppDatabase.class,"db").build();
+        return Room.databaseBuilder(context, AppDatabase.class,"db").build();
     }
 
 

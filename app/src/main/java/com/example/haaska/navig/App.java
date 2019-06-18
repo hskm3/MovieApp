@@ -3,6 +3,7 @@ package com.example.haaska.navig;
 import android.app.Application;
 import com.example.haaska.navig.dagger.AppComponent;
 
+import com.example.haaska.navig.dagger.ContextModule;
 import com.example.haaska.navig.dagger.DaggerAppComponent;
 
 
@@ -17,7 +18,9 @@ public class App extends Application {
 
     public AppComponent getAppComponent() {
         if (appComponent == null) {
-            appComponent = DaggerAppComponent.builder().build();
+            appComponent = DaggerAppComponent.builder()
+                    .contextModule(new ContextModule(this))
+                    .build();
         }
         return appComponent;
     }

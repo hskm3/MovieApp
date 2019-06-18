@@ -31,7 +31,7 @@ public class MainPresenter {
     @Inject
     public MainPresenter(Router router1,Model model1) {
         movies=new ArrayList<>();
-        query=STUB_QUERY;
+        query=model1.getQuery();
         page=1;
         previousTotal=0;
         loading=true;
@@ -44,23 +44,24 @@ public class MainPresenter {
     }
 
     public void detachView() {
+        model.saveQuery(query);
         view = null;
     }
 
     private void loadMovies(boolean isScroll) {
 
-        if(!isScroll){
-            page=1;
-            previousTotal=0;
+        if (!isScroll) {
+            page = 1;
+            previousTotal = 0;
         }
-        if(model.isOnline()) {
-            model.loadMovies(query,page)
+        if (model.isOnline()) {
+            model.loadMovies(query, page)
                     .doOnSubscribe(disposable -> view.showProgress())
                     .doAfterTerminate(view::hideProgress)
                     .subscribe(movies1 -> {
-                                if(!isScroll){
-                                    this.movies=movies1;
-                                }else {
+                                if (!isScroll) {
+                                    this.movies = movies1;
+                                } else {
                                     this.movies.addAll(movies1);
                                 }
                                 view.showMovies(this.movies);
@@ -71,7 +72,7 @@ public class MainPresenter {
 
                             }
                     );
-        }else {
+        } else {
             view.showMessages("No internet connection");
         }
     }

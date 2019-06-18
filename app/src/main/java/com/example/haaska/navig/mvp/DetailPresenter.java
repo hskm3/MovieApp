@@ -12,8 +12,7 @@ public class DetailPresenter {
 
     private static final String TAG = "mdbapp";
     private DetailView view;
-//    @Inject
-    Model model;
+    private Model model;
     private Movie movie;
     @Inject
     public DetailPresenter(Model model) {

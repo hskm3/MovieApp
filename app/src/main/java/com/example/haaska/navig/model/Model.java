@@ -1,19 +1,15 @@
 package com.example.haaska.navig.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.example.haaska.navig.App;
-import com.example.haaska.navig.dagger.AppComponent;
 import com.example.haaska.navig.db.AppDatabase;
 import com.example.haaska.navig.network.MdbApi;
 
 import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
@@ -22,20 +18,19 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
-
 public class Model {
 
-
+    private static final String APP_PREFERENCES_NAME = "query";
+    private static final String API_KEY ="22e3f7dd60ebd88242ad20b2353bb229";
     private MdbApi mdbApi;
-
+    private SharedPreferences sharedPreferences;
     private AppDatabase appDatabase;
 
-    public Model(MdbApi mdbApi, AppDatabase appDatabase) {
+    public Model(MdbApi mdbApi, AppDatabase appDatabase,SharedPreferences sharedPreferences) {
         this.mdbApi = mdbApi;
         this.appDatabase = appDatabase;
+        this.sharedPreferences=sharedPreferences;
     }
-
-    private static final String API_KEY ="22e3f7dd60ebd88242ad20b2353bb229";
 
     public Observable<List<Movie>> loadMovies(String query, int page) {
 
@@ -47,14 +42,24 @@ public class Model {
 
     }
 
+    public String getQuery(){
+        if(sharedPreferences.contains(APP_PREFERENCES_NAME)) {
+            return sharedPreferences.getString(APP_PREFERENCES_NAME, "");
+        }else
+            return "Sport";
+    }
+
+    public void saveQuery(String q){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(APP_PREFERENCES_NAME, q);
+        editor.apply();
+    }
+
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) App.getInstance().getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnected()) {
-            return true;
-        } else {
-            return false;
-        }
+        return  (netInfo != null && netInfo.isConnected());
+
     }
 
     public Flowable<List<Movie>> getAllMovies(){

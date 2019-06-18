@@ -1,21 +1,19 @@
 package com.example.haaska.navig.ui;
 import android.os.Bundle;
-        import android.support.annotation.NonNull;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-        import android.support.v7.widget.RecyclerView;
-        import android.support.v7.widget.SearchView;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ProgressBar;
-        import android.widget.TextView;
-        import android.widget.Toast;
-
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.haaska.navig.App;
 import com.example.haaska.navig.R;
@@ -23,9 +21,9 @@ import com.example.haaska.navig.model.Movie;
 import com.example.haaska.navig.mvp.MainPresenter;
 import com.example.haaska.navig.mvp.MainView;
 
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 

@@ -13,8 +13,8 @@ public class FavorPresenter {
 
     private static final String TAG = "mdbapp";
     private FavorView view;
-    Model model;
-    Router router;
+    private Model model;
+    private Router router;
 
     @Inject
     public FavorPresenter(Model model1,Router router1) {
