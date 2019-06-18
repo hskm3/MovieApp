@@ -16,8 +16,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.example.haaska.navig.ui.MainFragment.TAG;
-
 public class MdbAdapter extends RecyclerView.Adapter<MdbAdapter.ViewHolder> {
 
     private List<Movie> movies;
@@ -81,6 +79,8 @@ public class MdbAdapter extends RecyclerView.Adapter<MdbAdapter.ViewHolder> {
                         .fit()
                         .centerCrop()
                         .into((ImageView) img);
+            }else {
+                img.setImageResource(R.drawable.ic_stub);
             }
         }
 

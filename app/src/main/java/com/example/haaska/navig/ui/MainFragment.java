@@ -33,7 +33,6 @@ public class MainFragment extends Fragment implements MainView, OnMovieClickList
     MainPresenter presenter;
     private MdbAdapter adapter;
     private LinearLayoutManager layoutManager;
-    public static final String TAG="frga";
     private ProgressBar progressBar;
     private TextView textView;
     private SearchView searchView;

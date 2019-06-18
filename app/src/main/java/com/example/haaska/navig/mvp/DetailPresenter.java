@@ -46,9 +46,11 @@ public class DetailPresenter {
         if(movie.getFav()!=1) {
             addFavMovie(movie);
             view.setOnFavBtn();
+            movie.setFav(1);
         } else {
             delFavMovie(movie);
             view.setOffFavBtn();
+            movie.setFav(0);
         }
     }
 
