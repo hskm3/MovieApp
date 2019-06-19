@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState==null){
             router.replaceScreen(new StartScreen());
         }
-
     }
 
     @Override

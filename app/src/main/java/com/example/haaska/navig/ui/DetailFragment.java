@@ -83,13 +83,13 @@ public class DetailFragment extends Fragment implements DetailView {
         avg= movie.getVoteAverage();
         count= movie.getVoteCount();
 
-        tv_title=(TextView)v.findViewById(R.id.titleM);
-        tv_overview=(TextView)v.findViewById(R.id.overviewM);
-        tv_date=(TextView)v.findViewById(R.id.date);
-        tv_avg=(TextView)v.findViewById(R.id.avg);
-        tv_count=(TextView)v.findViewById(R.id.count);
-        img=(ImageView)v.findViewById(R.id.imgMov);
-        btn_fav =(ImageButton) v.findViewById(R.id.imgFav);
+        tv_title= v.findViewById(R.id.titleM);
+        tv_overview= v.findViewById(R.id.overviewM);
+        tv_date= v.findViewById(R.id.date);
+        tv_avg= v.findViewById(R.id.avg);
+        tv_count= v.findViewById(R.id.count);
+        img= v.findViewById(R.id.imgMov);
+        btn_fav = v.findViewById(R.id.imgFav);
 
         if(posterPath!=null) {
             Picasso.get()
@@ -98,7 +98,7 @@ public class DetailFragment extends Fragment implements DetailView {
                     .error(R.drawable.ic_stub)
                     .fit()
                     .centerCrop()
-                    .into((ImageView) img);
+                    .into(img);
         }
         tv_title.setText(title);
         tv_overview.setText(overview);

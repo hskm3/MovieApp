@@ -57,7 +57,7 @@ public class FavorFragment extends Fragment implements OnMovieClickListener, Fav
         Objects.requireNonNull(getActivity()).setTitle("Favorites");
         movies = new ArrayList<>();
 
-        recyclerView = v.findViewById(R.id.list);;
+        recyclerView = v.findViewById(R.id.list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(v.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
